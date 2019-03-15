@@ -14,15 +14,16 @@ namespace App1_Vagas.Paginas
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ConsultaPage : ContentPage
 	{
-		public ConsultaPage ()
+        List<Vaga> Lista { get; set; }
+        public ConsultaPage ()
 		{
 			InitializeComponent ();
 
             DataBase bd = new DataBase();
-            var lista= bd.Consultar();
-            listVagas.ItemsSource = lista;
+            Lista= bd.Consultar();
+            listVagas.ItemsSource = Lista;
             string vagas = "Vagas Disponíveis.";
-            lblQtdVagas.Text = lista.Count.ToString() + vagas;
+            lblQtdVagas.Text = Lista.Count.ToString() + vagas;
 		}
 
         private void BtnAdd_Clicked(object sender, EventArgs e)
@@ -41,6 +42,11 @@ namespace App1_Vagas.Paginas
             TapGestureRecognizer tapGest = (TapGestureRecognizer)lblDetalhe.GestureRecognizers[0];
             Vaga vaga = tapGest.CommandParameter as Vaga;
             Navigation.PushAsync(new DetalhePage(vaga));
+        }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            listVagas.ItemsSource = Lista.Where(a => a.Cargo.Contains(e.NewTextValue)).ToList();
         }
     }
 }

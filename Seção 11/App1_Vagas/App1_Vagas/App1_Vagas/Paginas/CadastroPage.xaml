@@ -9,12 +9,10 @@
             <Entry x:Name="txtEmpresa" Placeholder="Empresa" />
             <Entry x:Name="txtQuantidade" Placeholder="Quantidade" />
             <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
-                       TextChanged="TxtCidade_TextChanged"
-                       IsEnabled="False"/>
+                       TextChanged="TxtCidade_TextChanged"/>
             <StackLayout Orientation="Horizontal">               
                 <Picker Title="Selecione Cidade" x:Name="cbCidades"
-                    ItemDisplayBinding="{Binding Nome}"
-                    IsEnabled="False"/>
+                    ItemDisplayBinding="{Binding Nome}"/>
                 <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
                 <Picker Title="Selecione Estado" x:Name="cbEstados"
                     ItemDisplayBinding="{Binding Nome}"
@@ -37,11 +35,7 @@
                     <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />
                 </Entry.Behaviors>
             </Entry>
-            <Entry x:Name="txtEmail" Placeholder="Email">
-                <Entry.Behaviors>
-                    <behaviorPack:EmailValidationBehavior />
-                </Entry.Behaviors>
-            </Entry>
+            <Entry x:Name="txtEmail" Placeholder="Email"></Entry>
             <Button Text="Salvar" x:Name="btnSalvar" Clicked="BtnSalvar_Clicked" />
         </StackLayout>
     </ContentPage.Content>

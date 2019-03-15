@@ -4,47 +4,48 @@
              x:Class="App1_Vagas.Paginas.VagasCadastradasPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Vagas" FontSize="24"></Label>
-                    <Label Text="Encontre seu emprego aqui" FontSize="12"></Label>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Add" x:Name="btnAdd" Clicked="BtnAdd_Clicked" ></Button>
-                    <Button Text="Minhas Vagas" x:Name="btnVagas" Clicked="BtnVagas_Clicked"></Button>
-                </StackLayout>
-                <Entry Placeholder="Pesquisar" />
-                <Label Text="15 Vagas Cadastradas" x:Name="lblVagas"/>
-                <ListView>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Vagas" FontSize="24" />
+                <Label Text="encontre seu emprego aqui" FontSize="12" />
+            </StackLayout>
+            <Entry Placeholder="Pesquisar"  TextChanged="PesquisarAction"/>
+            <Label Text="" x:Name="lblCount" />
+            <ListView x:Name="ListaVagas" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Text="{Binding Cargo}" FontAttributes="Bold"/>
-                                <Label Grid.Column="0" Text="{Binding Empresa}" FontAttributes="Bold"/>
-                                <Label Grid.Column="0" Text="{Binding Cidade}" FontAttributes="Bold"/>
-                                <Label Text="+Editar"  Grid.Column="1">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="EditarAction" Command="{Binding .}"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label Text=" | "/>
-                                <Label Text="+Excluir" Grid.Column="1">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="ExcluirAction" Command="{Binding .}"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                <StackLayout Grid.Column="0">
+                                    <Label Text="{Binding Cargo}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Empresa}" />
+                                    <Label Text="{Binding Cidade}" />
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                    <Label Text="Editar" FontSize="16">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="|" />
+                                    <Label Text="Excluir" FontSize="16">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ExcluirAction" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
                             </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

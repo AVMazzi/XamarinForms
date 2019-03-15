@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using App1_Vagas.Modelos;
 using App1_Vagas.Banco;
 using App1_Vagas.Servicos;
+using App1_Vagas.Validacoes;
 
 namespace App1_Vagas.Paginas
 {
@@ -22,6 +23,7 @@ namespace App1_Vagas.Paginas
         {
             InitializeComponent();
             cbEstados.ItemsSource = Servicos.Servicos.GetEstados();
+            cbCidades.ItemsSource = Servicos.Servicos.GetAllMunicipios();
         }
 
         private void BtnSalvar_Clicked(object sender, EventArgs e)
@@ -40,8 +42,9 @@ namespace App1_Vagas.Paginas
             objVaga.Descricao = edtDescricao.Text;
             objVaga.TipoContratacao = (swtTipoContratacao.IsToggled) ? "PJ" : "CLT";
             objVaga.Telefone = txtTelefone.Text;
-            objVaga.email = txtEmail.Text;
+            objVaga.Email = txtEmail.Text;
 
+            bool validador = VagaValidation.vagaValidation(objVaga);
             DataBase db = new DataBase();
             db.Cadastro(objVaga);
             App.Current.MainPage = new NavigationPage(new ConsultaPage());

@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FluentValidation;
+using System.ComponentModel.DataAnnotations;
+using App1_Vagas.Validacoes;
 
 namespace App1_Vagas.Modelos
 {
@@ -19,6 +22,6 @@ namespace App1_Vagas.Modelos
         public string Descricao { get; set; }
         public string TipoContratacao { get; set; }
         public string Telefone { get; set; }
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }

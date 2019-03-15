@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1_Vagas.Paginas.ConsultaPage">
+             x:Class="App1_Vagas.Paginas.ConsultaPage"
+             Title="Agência de Empregos">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20,0,20,0">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Vagas" FontSize="24"></Label>
-                <Label Text="Encontre seu emprego aqui" FontSize="12"></Label>
+                <Label Text="Encontre seu emprego aqui" FontSize="12"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="EndAndExpand"></Label>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Add" x:Name="btnAdd" Clicked="BtnAdd_Clicked"></Button>
                 <Button Text="Minhas Vagas" x:Name="btnVagas" Clicked="BtnVagas_Clicked"></Button>
             </StackLayout>
-            <Entry Placeholder="Pesquisar" />
+            <Entry Placeholder="Pesquisar" TextChanged="Entry_TextChanged"/>
             <Label Text="" x:Name="lblQtdVagas"/>
             <ListView x:Name="listVagas">
                 <ListView.ItemTemplate>
@@ -32,7 +35,8 @@
                                     <Label Text="{Binding Cidade}" />
                                     <Label Text="{Binding Estado}" />
                                 </StackLayout>
-                                <Label Text="+Detalhe"  Grid.Column="1">
+                                <Label Text="+Detalhe"  Grid.Column="1" FontSize="16"
+                                       HorizontalOptions="EndAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="MaisDetalheAction" CommandParameter="{Binding .}" />
                                     </Label.GestureRecognizers>
