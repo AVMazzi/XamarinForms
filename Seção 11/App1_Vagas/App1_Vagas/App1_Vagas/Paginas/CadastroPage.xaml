@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             x:Class="App1_Vagas.Paginas.CadastroPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txtVaga" Placeholder="Vaga" />
+            <Entry x:Name="txtEmpresa" Placeholder="Empresa" />
+            <Entry x:Name="txtQuantidade" Placeholder="Quantidade" />
+            <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
+                       TextChanged="TxtCidade_TextChanged"
+                       IsEnabled="False"/>
+            <StackLayout Orientation="Horizontal">               
+                <Picker Title="Selecione Cidade" x:Name="cbCidades"
+                    ItemDisplayBinding="{Binding Nome}"
+                    IsEnabled="False"/>
+                <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
+                <Picker Title="Selecione Estado" x:Name="cbEstados"
+                    ItemDisplayBinding="{Binding Nome}"
+                    SelectedIndexChanged="CbEstados_SelectedIndexChanged"></Picker>
+            </StackLayout>
+            
+            <Entry x:Name="txtSalario" Placeholder="Salario" />
+            <Label Text="Descrição do Cargo" />
+            <Editor x:Name="edtDescricao" HeightRequest="75" />
+           
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tipo de Contratação" />
+                <Label Text="CLT" />
+                <Switch x:Name="swtTipoContratacao"/>
+                <Label Text="PJ" />
+            </StackLayout>
+            <Entry x:Name="txtTelefone" Placeholder="Telefone">
+                <Entry.Behaviors>
+                    <behaviorPack:NumberValidationBehavior />
+                    <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry x:Name="txtEmail" Placeholder="Email">
+                <Entry.Behaviors>
+                    <behaviorPack:EmailValidationBehavior />
+                </Entry.Behaviors>
+            </Entry>
+            <Button Text="Salvar" x:Name="btnSalvar" Clicked="BtnSalvar_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
