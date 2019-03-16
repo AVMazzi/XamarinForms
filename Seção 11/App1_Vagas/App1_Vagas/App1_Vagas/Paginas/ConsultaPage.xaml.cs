@@ -22,8 +22,23 @@ namespace App1_Vagas.Paginas
             DataBase bd = new DataBase();
             Lista= bd.Consultar();
             listVagas.ItemsSource = Lista;
-            string vagas = "Vagas Disponíveis.";
-            lblQtdVagas.Text = Lista.Count.ToString() + vagas;
+            string vagas;
+
+            if (Lista.Count >1)
+            {
+                vagas = Lista.Count.ToString() + "Vagas Disponíveis.";
+            }
+            else if (Lista.Count == 1)
+            {
+                vagas = Lista.Count.ToString() + "Vaga DisponíveL.";
+
+            }
+            else
+            {
+                vagas = "Nenhuma Vaga Disponível.";
+            }
+             
+            lblQtdVagas.Text =  vagas;
 		}
 
         private void BtnAdd_Clicked(object sender, EventArgs e)

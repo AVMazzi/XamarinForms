@@ -16,41 +16,44 @@
             <Label Text="{Binding Telefone}"/>
             <Label Text="{Binding Email}"/>
         </StackLayout>-->
-        <StackLayout>
-            <Label Text="{Binding Cargo}" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" />
-            <Label Text="{Binding Empresa}" FontSize="10" HorizontalOptions="Center" TextColor="#DDDDDD" />
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Quantidade(Vagas): "  FontAttributes="Bold"/>
-                <Label Text="{Binding Quantidade}" />
+        <RelativeLayout>
+            <Image Source="CLTOPACA.png" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout  Padding="30,0,5,0" Spacing="5">
+                <Label Text="{Binding Cargo}" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold"  TextColor="Black"/>
+                <Label Text="{Binding Empresa}" FontSize="13" HorizontalOptions="Center" TextColor="DarkBlue" FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Quantidade(Vagas): "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Quantidade}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cidade: "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Cidade}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Estado: "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Estado}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Salario(R$): "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Salario}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Requisitos: "  FontAttributes="Bold" WidthRequest="100" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Descricao}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tipo de Contratação: "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding TipoContratacao}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Telefone: "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Telefone}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Email: "  FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Text="{Binding Email}" FontSize="15" TextColor="Black"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Cidade: "  FontAttributes="Bold"/>
-                <Label Text="{Binding Cidade}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Estado: "  FontAttributes="Bold"/>
-                <Label Text="{Binding Estado}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Salario(R$): "  FontAttributes="Bold"/>
-                <Label Text="{Binding Salario}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Requisitos: "  FontAttributes="Bold" WidthRequest="100"/>
-                <Label Text="{Binding Descricao}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Tipo de Contratação: "  FontAttributes="Bold"/>
-                <Label Text="{Binding TipoContratacao}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Telefone: "  FontAttributes="Bold"/>
-                <Label Text="{Binding Telefone}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Email: "  FontAttributes="Bold"/>
-                <Label Text="{Binding Email}" />
-            </StackLayout>
-        </StackLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

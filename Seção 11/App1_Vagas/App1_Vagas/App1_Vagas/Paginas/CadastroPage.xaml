@@ -5,40 +5,44 @@
              x:Class="App1_Vagas.Paginas.CadastroPage"
               BackgroundColor="LightGray"
              Title="Cadastro de Vagas">
-<ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="txtVaga" Placeholder="Vaga" />
-            <Entry x:Name="txtEmpresa" Placeholder="Empresa" />
-            <Entry x:Name="txtQuantidade" Placeholder="Quantidade" />
-            <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
-                       TextChanged="TxtCidade_TextChanged"/>
-            <StackLayout Orientation="Horizontal">               
-                <Picker Title="Selecione Cidade" x:Name="cbCidades"
-                    ItemDisplayBinding="{Binding Nome}"/>
-                <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
-                <Picker Title="Selecione Estado" x:Name="cbEstados"
-                    ItemDisplayBinding="{Binding Nome}"
-                    SelectedIndexChanged="CbEstados_SelectedIndexChanged"></Picker>
+             
+<ContentPage.Content >
+    <RelativeLayout>
+        <Image Source="CLTOPACA.png" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Padding="10,0,5,0">
+                <Entry x:Name="txtVaga" Placeholder="Vaga" />
+                <Entry x:Name="txtEmpresa" Placeholder="Empresa" />
+                <Entry x:Name="txtQuantidade" Placeholder="Quantidade" />
+                <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
+                                   TextChanged="TxtCidade_TextChanged"/>
+                <StackLayout Orientation="Horizontal">
+                    <Picker Title="Selecione Cidade" x:Name="cbCidades"
+                                ItemDisplayBinding="{Binding Nome}"/>
+                    <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
+                    <Picker Title="Selecione Estado" x:Name="cbEstados"
+                                ItemDisplayBinding="{Binding Nome}"
+                                SelectedIndexChanged="CbEstados_SelectedIndexChanged"></Picker>
+                </StackLayout>
+
+                <Entry x:Name="txtSalario" Placeholder="Salario" />
+                <Label Text="Descrição do Cargo" />
+                <Editor x:Name="edtDescricao" HeightRequest="75" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tipo de Contratação" />
+                    <Label Text="CLT" />
+                    <Switch x:Name="swtTipoContratacao"/>
+                    <Label Text="PJ" />
+                </StackLayout>
+                <Entry x:Name="txtTelefone" Placeholder="Telefone" Keyboard="Numeric">
+                    <Entry.Behaviors>
+                        <behaviorPack:NumberValidationBehavior />
+                        <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry x:Name="txtEmail" Placeholder="Email"></Entry>
+                <Button Text="Salvar" x:Name="btnSalvar" Clicked="BtnSalvar_Clicked" />
             </StackLayout>
-            
-            <Entry x:Name="txtSalario" Placeholder="Salario" />
-            <Label Text="Descrição do Cargo" />
-            <Editor x:Name="edtDescricao" HeightRequest="75" />
-           
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Tipo de Contratação" />
-                <Label Text="CLT" />
-                <Switch x:Name="swtTipoContratacao"/>
-                <Label Text="PJ" />
-            </StackLayout>
-            <Entry x:Name="txtTelefone" Placeholder="Telefone" Keyboard="Numeric">
-                <Entry.Behaviors>
-                    <behaviorPack:NumberValidationBehavior />
-                    <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX"/>
-                </Entry.Behaviors>
-            </Entry>
-            <Entry x:Name="txtEmail" Placeholder="Email"></Entry>
-            <Button Text="Salvar" x:Name="btnSalvar" Clicked="BtnSalvar_Clicked" />
-        </StackLayout>
+    </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,40 +7,43 @@
               BackgroundColor="LightGray"
              Title=" Atualizar Vagas">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Entry x:Name="NomeVaga" Placeholder="Vaga" />
-                <Entry x:Name="Empresa" Placeholder="Empresa" />
-                <Entry x:Name="Quantidade" Placeholder="Quantidade" />
-                <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
+        <RelativeLayout>
+            <Image Source="CLTOPACA.png" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <ScrollView>
+                <StackLayout  Padding="10,0,5,0">
+                    <Entry x:Name="NomeVaga" Placeholder="Vaga" />
+                    <Entry x:Name="Empresa" Placeholder="Empresa" />
+                    <Entry x:Name="Quantidade" Placeholder="Quantidade" />
+                    <Entry x:Name="txtCidade" Placeholder="Pesquisar Cidade" 
                        TextChanged="TxtCidade_TextChanged"/>
-                <StackLayout Orientation="Horizontal">
-                    <Picker Title="Selecione Cidade" x:Name="cbCidades"
+                    <StackLayout Orientation="Horizontal">
+                        <Picker Title="Selecione Cidade" x:Name="cbCidades"
                     ItemDisplayBinding="{Binding Nome}"/>
-                    <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
-                    <Picker Title="Selecione Estado" x:Name="cbEstados"
+                        <Label Text=" / " FontSize="25" VerticalOptions="Center"></Label>
+                        <Picker Title="Selecione Estado" x:Name="cbEstados"
                     ItemDisplayBinding="{Binding Nome}"
                     SelectedIndexChanged="CbEstados_SelectedIndexChanged"></Picker>
-                </StackLayout>
-                <Entry x:Name="Salario" Placeholder="Salario" />
-                <Label Text="Descrição do Cargo" />
-                <Editor x:Name="Descricao" HeightRequest="100" />
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Tipo de contratação" />
-                    <Label Text="CLT" />
-                    <Switch x:Name="TipoContratacao"/>
-                    <Label Text="PJ" />
-                </StackLayout>
-                <Entry x:Name="Telefone" Placeholder="Telefone" Keyboard="Numeric">
-                    <Entry.Behaviors>
-                        <behaviorPack:NumberValidationBehavior />
-                        <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />                       
-                    </Entry.Behaviors>
-                </Entry>
-                <Entry x:Name="Email" Placeholder="Email" />
+                    </StackLayout>
+                    <Entry x:Name="Salario" Placeholder="Salario" />
+                    <Label Text="Descrição do Cargo" />
+                    <Editor x:Name="Descricao" HeightRequest="100" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tipo de contratação" />
+                        <Label Text="CLT" />
+                        <Switch x:Name="TipoContratacao"/>
+                        <Label Text="PJ" />
+                    </StackLayout>
+                    <Entry x:Name="Telefone" Placeholder="Telefone" Keyboard="Numeric">
+                        <Entry.Behaviors>
+                            <behaviorPack:NumberValidationBehavior />
+                            <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry x:Name="Email" Placeholder="Email" />
 
-                <Button Text="Salvar" Clicked="SalvarAction"/>
-            </StackLayout>
-        </ScrollView>
+                    <Button Text="Salvar" Clicked="SalvarAction"/>
+                </StackLayout>
+            </ScrollView>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

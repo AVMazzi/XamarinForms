@@ -5,48 +5,54 @@
              Title="Agência de Empregos"
              BackgroundColor="LightGray">
     <ContentPage.Content>
-        <StackLayout Padding="20,0,20,0">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Vagas" FontSize="24"></Label>
-                <Label Text="Encontre seu emprego aqui" FontSize="12"
+        <RelativeLayout HorizontalOptions="CenterAndExpand">
+            <Image Source="CLTOPACA.png"  Margin="0,60,0,0"
+                   VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Margin="5,0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Vagas" FontSize="24"></Label>
+                    <Label Text="Encontre seu emprego aqui" 
+                           FontSize="15" TextColor="Black"
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Adicionar Vagas" x:Name="btnAdd" Clicked="BtnAdd_Clicked"></Button>
+                    <Button Text="Minhas Vagas" x:Name="btnVagas" Clicked="BtnVagas_Clicked"></Button>
+                </StackLayout>
+                <Entry Placeholder="Pesquisar" TextChanged="Entry_TextChanged"/>
+                <Label Text="" x:Name="lblQtdVagas"/>
+                <ListView x:Name="listVagas">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Column="0" Spacing="2" HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Cargo}" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Empresa}" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Cidade}" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Estado}" FontSize="15" TextColor="Black"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                                        <Label Text="+Detalhe"   FontSize="16" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="MaisDetalheAction" CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Adicionar Vagas" x:Name="btnAdd" Clicked="BtnAdd_Clicked"></Button>
-                <Button Text="Minhas Vagas" x:Name="btnVagas" Clicked="BtnVagas_Clicked"></Button>
-            </StackLayout>
-            <Entry Placeholder="Pesquisar" TextChanged="Entry_TextChanged"/>
-            <Label Text="" x:Name="lblQtdVagas"/>
-            <ListView x:Name="listVagas">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <StackLayout Grid.Column="0" >
-                                    <Label Text="{Binding Cargo}" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Empresa}" />
-                                    <Label Text="{Binding Cidade}" />
-                                    <Label Text="{Binding Estado}" />
-                                </StackLayout>
-                                <Label Text="+Detalhe"  Grid.Column="1" FontSize="16"
-                                       HorizontalOptions="EndAndExpand">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="MaisDetalheAction" CommandParameter="{Binding .}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

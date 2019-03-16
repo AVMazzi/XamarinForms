@@ -11,6 +11,7 @@ using App1_Vagas.Banco;
 using App1_Vagas.Servicos;
 using App1_Vagas.Validacoes;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace App1_Vagas.Paginas
 {
@@ -30,8 +31,11 @@ namespace App1_Vagas.Paginas
             InitializeComponent();
 
             _validator = new VagaValidation();
-            cbEstados.ItemsSource = Servicos.Servicos.GetEstados();
-            cbCidades.ItemsSource = Servicos.Servicos.GetAllMunicipios();
+            Cidades = Servicos.Servicos.GetAllMunicipios();
+            Estados = Servicos.Servicos.GetEstados();
+
+            cbEstados.ItemsSource = Estados.OrderBy(a=>a.Nome).ToList();
+            cbCidades.ItemsSource = Cidades.OrderBy(a => a.Nome).ToList(); ;
         }
 
         private void BtnSalvar_Clicked(object sender, EventArgs e)
@@ -52,12 +56,15 @@ namespace App1_Vagas.Paginas
             objVaga.Telefone = txtTelefone.Text;
             objVaga.Email = txtEmail.Text;
 
-            var resultadoValidacoes = _validator.Validate(vaga);
+            string telefone = objVaga.Telefone;
+            string telefoneNum = Regex.Replace(telefone, "[^0-9]", "").Trim();
+            objVaga.Telefone = telefoneNum;
+            var resultadoValidacoes = _validator.Validate(objVaga);
 
             if (resultadoValidacoes.IsValid)
             {
                 DataBase database = new DataBase();
-                database.Cadastro(vaga);
+                database.Cadastro(objVaga);
                 DisplayAlert("Sucesso", "Cadastro Realizado com Sucesso!", "OK");
                 App.Current.MainPage = new NavigationPage(new VagasCadastradasPage());
             }

@@ -14,7 +14,7 @@ namespace App1_Vagas.Banco
         public DataBase()
         {
             var dep = DependencyService.Get < ICaminho>();
-            string caminho = dep.ObterCaminho("DB_AGENCIAMEPREGO_Sqlite");
+            string caminho = dep.ObterCaminho("DB_AGENCIAEMPREGO_Sqlite");
             _conexao = new SQLiteConnection(caminho);
             _conexao.CreateTable<Vaga>();
         }

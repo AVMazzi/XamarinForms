@@ -5,51 +5,56 @@
               BackgroundColor="LightGray"
              Title="Vagas Cadastradas">
     <ContentPage.Content>
-        <StackLayout Padding="20,0,20,0">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Vagas" FontSize="24" />
-                <Label Text="Encontre seu emprego aqui" FontSize="12"
-                       HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="EndAndExpand"/>
-            </StackLayout>
-            <Entry Placeholder="Pesquisar"  TextChanged="PesquisarAction"/>
-            <Label Text="" x:Name="lblCount" />
-            <ListView x:Name="ListaVagas" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="250" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
-                                    <Label Text="{Binding Cargo}" FontAttributes="Bold" />
-                                    <Label Text="{Binding Empresa}" />
-                                    <Label Text="{Binding Cidade}" />
-                                </StackLayout>
+        <RelativeLayout>
+            <Image Source="CLTOPACA.png" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Vagas" FontSize="24" />
+                    <Label Text="Encontre seu emprego aqui" 
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="EndAndExpand"
+                           FontSize="15" TextColor="Black"/>
+                </StackLayout>
+                <Entry Placeholder="Pesquisar"  TextChanged="PesquisarAction"/>
+                <Label Text="" x:Name="lblCount" />
+                <ListView x:Name="ListaVagas" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" Spacing="2">
+                                        <Label Text="{Binding Cargo}" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Empresa}" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Cidade}" FontSize="15" TextColor="Black"/>
+                                        <Label Text="{Binding Estado}" FontSize="15" TextColor="Black"/>
+                                    </StackLayout>
 
-                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
-                                    <Label Text="Editar" FontSize="16" >
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    <Label Text="|" />
-                                    <Label Text="Excluir" FontSize="16">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="ExcluirAction" CommandParameter="{Binding .}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                        <Label Text="Editar" FontSize="16" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Text="|" />
+                                        <Label Text="Excluir" FontSize="16">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ExcluirAction" CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
