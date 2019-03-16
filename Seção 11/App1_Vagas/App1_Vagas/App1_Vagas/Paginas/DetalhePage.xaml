@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1_Vagas.Paginas.DetalhePage">
+             x:Class="App1_Vagas.Paginas.DetalhePage"
+             Title="Agência de Empregos - Detalhes da Vaga"
+              BackgroundColor="LightGray">
     <ContentPage.Content>
         <!--<StackLayout>
             <Label Text="{Binding Cargo}"/>

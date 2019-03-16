@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
-             x:Class="App1_Vagas.Paginas.EditarPage">
+             xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
+             x:Class="App1_Vagas.Paginas.EditarPage"
+              BackgroundColor="LightGray"
+             Title="Agência de Empregos - Atualizar Vagas">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -28,11 +31,10 @@
                     <Switch x:Name="TipoContratacao"/>
                     <Label Text="PJ" />
                 </StackLayout>
-                <Entry x:Name="Telefone" Placeholder="Telefone" >
+                <Entry x:Name="Telefone" Placeholder="Telefone" Keyboard="Numeric">
                     <Entry.Behaviors>
                         <behaviorPack:NumberValidationBehavior />
-                        <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />
-                        <behaviorPack:MaskedBehavior Mask="(XX)XXXXX-XXXX" />                        
+                        <behaviorPack:MaskedBehavior Mask="(XX)XXXX-XXXX" />                       
                     </Entry.Behaviors>
                 </Entry>
                 <Entry x:Name="Email" Placeholder="Email" />

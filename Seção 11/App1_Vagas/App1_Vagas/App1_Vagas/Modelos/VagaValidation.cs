@@ -6,7 +6,9 @@ using FluentValidation;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace App1_Vagas.Validacoes
+using App1_Vagas.Paginas;
+
+namespace App1_Vagas.Modelos
 {
     public class VagaValidation : AbstractValidator<Vaga>
     {
@@ -26,7 +28,7 @@ namespace App1_Vagas.Validacoes
                 .Length(8, 30).WithMessage("Informe a Cidade.");
             RuleFor(a => a.Estado).NotNull()
                 .NotEmpty()
-                .Length(8, 30).WithMessage("Informe o Estado.");
+                .Length(1, 30).WithMessage("Informe o Estado.");
             RuleFor(a => a.Salario.ToString()).NotNull()
                 .NotEmpty()
                 .Length(6, 30).WithMessage("Informe o Salário.");
@@ -35,43 +37,23 @@ namespace App1_Vagas.Validacoes
                 .Length(8, 100).WithMessage("Informe o Requisito do para vaga.");
             RuleFor(a => a.TipoContratacao).NotNull()
                 .NotEmpty()
-                .Length(8, 30).WithMessage("Informe o tipo de Contratação.");
+                .Length(2, 3).WithMessage("Informe o tipo de Contratação.");
             RuleFor(a => a.Telefone).NotNull()
                 .NotEmpty()
-                .Length(13, 14).WithMessage("Informe o Estado.");
+                .Must(TesteValidator).WithMessage("Telefone deve conter apenas números.")
+                .Length(10, 11).WithMessage("Telefone Inválido.");
             RuleFor(a => a.Email).NotNull()
                 .NotEmpty()
                 .EmailAddress()
                 .WithMessage("E-mail Inválido.");
         }
 
-        public static bool vagaValidation(Vaga vaga)
-        {
-            var validator = new VagaValidation();
-            var validRes = validator.Validate(vaga);
-            bool validador = false;
-            if (validRes.IsValid)
-            {
-                string telefone = vaga.Telefone;
-                string telefoneNum = Regex.Replace(telefone, "[^0-9]", "");
-                int teste = int.Parse(telefoneNum);
-                validador = TesteValidator(telefoneNum);
-                return validador;
-            }
-
-            return validador;
-        }
 
         public static bool TesteValidator(string teste)
         {
             bool valido = true;
-            int novoTeste = 0;
-
-            if (!int.TryParse(teste, out novoTeste))
-            {
-                valido = false;
-            }
-            else if (teste.Length != 8)
+            long novoTeste = 0;
+            if (!long.TryParse(teste, out novoTeste))
             {
                 valido = false;
             }

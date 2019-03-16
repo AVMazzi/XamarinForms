@@ -10,18 +10,26 @@ using App1_Vagas.Modelos;
 using App1_Vagas.Banco;
 using App1_Vagas.Servicos;
 using App1_Vagas.Validacoes;
+using FluentValidation;
 
 namespace App1_Vagas.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CadastroPage : ContentPage
     {
+        private Vaga vaga { get; set; }
         private List<Municipio> listaCidades { get; set; }
         private List<Municipio> filtroCidades { get; set; }
+        private static List<Municipio> Cidades { get; set; }
+        private static List<Estado> Estados { get; set; }
+
+        readonly IValidator _validator;
 
         public CadastroPage()
         {
             InitializeComponent();
+
+            _validator = new VagaValidation();
             cbEstados.ItemsSource = Servicos.Servicos.GetEstados();
             cbCidades.ItemsSource = Servicos.Servicos.GetAllMunicipios();
         }
@@ -44,25 +52,43 @@ namespace App1_Vagas.Paginas
             objVaga.Telefone = txtTelefone.Text;
             objVaga.Email = txtEmail.Text;
 
-            bool validador = VagaValidation.vagaValidation(objVaga);
-            DataBase db = new DataBase();
-            db.Cadastro(objVaga);
-            App.Current.MainPage = new NavigationPage(new ConsultaPage());
+            var resultadoValidacoes = _validator.Validate(vaga);
+
+            if (resultadoValidacoes.IsValid)
+            {
+                DataBase database = new DataBase();
+                database.Cadastro(vaga);
+                DisplayAlert("Sucesso", "Cadastro Realizado com Sucesso!", "OK");
+                App.Current.MainPage = new NavigationPage(new VagasCadastradasPage());
+            }
+            else
+            {
+                DisplayAlert("Error", resultadoValidacoes.Errors[0].ErrorMessage, "Ok");
+            }
+            
         }
 
         private void CbEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             Estado estado = (Estado)cbEstados.SelectedItem;
             listaCidades = Servicos.Servicos.GetMunicipios(estado.Id);
-            cbCidades.ItemsSource = listaCidades;
-            cbCidades.IsEnabled = true;
-            txtCidade.IsEnabled = true;
+            cbCidades.ItemsSource = listaCidades.OrderBy(a => a.Nome).ToList();
         }
 
         private void TxtCidade_TextChanged(object sender, TextChangedEventArgs e)
         {
-            filtroCidades =listaCidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
-            cbCidades.ItemsSource = filtroCidades;
+            if (listaCidades != null)
+            {
+                var selecao1 = cbCidades.SelectedIndex;
+                var selectItem = cbCidades.SelectedItem;
+                filtroCidades = listaCidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
+                cbCidades.ItemsSource = filtroCidades.OrderBy(x => x.Nome).ToList();
+            }
+            else
+            {
+                filtroCidades = Cidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
+                cbCidades.ItemsSource = filtroCidades.OrderBy(x => x.Nome).ToList();
+            }
         }
     }
 }

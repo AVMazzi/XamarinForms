@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1_Vagas.Paginas.ConsultaPage"
-             Title="Agência de Empregos">
+             Title="Agência de Empregos"
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <StackLayout Padding="20,0,20,0">
             <StackLayout Orientation="Horizontal">
@@ -12,7 +13,7 @@
                        VerticalOptions="EndAndExpand"></Label>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Add" x:Name="btnAdd" Clicked="BtnAdd_Clicked"></Button>
+                <Button Text="Adicionar Vagas" x:Name="btnAdd" Clicked="BtnAdd_Clicked"></Button>
                 <Button Text="Minhas Vagas" x:Name="btnVagas" Clicked="BtnVagas_Clicked"></Button>
             </StackLayout>
             <Entry Placeholder="Pesquisar" TextChanged="Entry_TextChanged"/>

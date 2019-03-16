@@ -10,6 +10,9 @@ using FluentValidation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using App1_Vagas.Validacoes;
+using Xamarin.Forms.BehaviorValidationPack;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace App1_Vagas.Paginas
 {
@@ -19,14 +22,23 @@ namespace App1_Vagas.Paginas
         private Vaga vaga { get; set; }
         private List<Municipio> listaCidades { get; set; }
         private List<Municipio> filtroCidades { get; set; }
+        private  static List<Municipio> Cidades { get; set; }
+        private static List<Estado> Estados { get; set; }
+
+        readonly IValidator _validator;
+
         public EditarPage(Vaga vaga)
         {
             InitializeComponent();
 
-            this.vaga = vaga;
-            cbEstados.ItemsSource = Servicos.Servicos.GetEstados();
-            cbCidades.ItemsSource = Servicos.Servicos.GetAllMunicipios();
+            _validator = new VagaValidation();
 
+            this.vaga = vaga;
+           // list.OrderByDecending(item => item.Body)
+            Cidades = Servicos.Servicos.GetAllMunicipios().OrderBy(a => a.Nome).ToList();
+            Estados = Servicos.Servicos.GetEstados().OrderBy(a => a.Nome).ToList();
+            cbEstados.ItemsSource = Estados;
+            cbCidades.ItemsSource = Cidades;
             NomeVaga.Text = vaga.Cargo;
             Empresa.Text = vaga.Empresa;
             Quantidade.Text = vaga.Quantidade.ToString();
@@ -54,30 +66,47 @@ namespace App1_Vagas.Paginas
             vaga.Telefone = Telefone.Text;
             vaga.Email = Email.Text;
 
-            bool validador = VagaValidation.vagaValidation(vaga);
-            if (validador)
+            string telefone = vaga.Telefone;
+            string telefoneNum = Regex.Replace(telefone, "[^0-9]", "").Trim();
+            vaga.Telefone = telefoneNum;
+
+            var resultadoValidacoes = _validator.Validate(vaga);
+           //bool validador = VagaValidation.vagaValidation(vaga);
+            if(resultadoValidacoes.IsValid)
             {
                 DataBase database = new DataBase();
                 database.Atualizar(vaga);
                 DisplayAlert("Sucesso", "Atualizado com Sucesso!", "OK");
+                App.Current.MainPage = new NavigationPage(new VagasCadastradasPage());
             }
-            
-            
-
-            App.Current.MainPage = new NavigationPage(new VagasCadastradasPage());
+            else
+            {
+                DisplayAlert("Error", resultadoValidacoes.Errors[0].ErrorMessage, "Ok");
+            }
         }
 
         private void CbEstados_SelectedIndexChanged(object sender, SelectedItemChangedEventArgs e)
         {
             Estado estado = (Estado)cbEstados.SelectedItem;
             listaCidades = Servicos.Servicos.GetMunicipios(estado.Id);
-            cbCidades.ItemsSource = listaCidades;
+            cbCidades.ItemsSource = listaCidades.OrderBy(a => a.Nome).ToList();
         }
 
         private void TxtCidade_TextChanged(object sender, TextChangedEventArgs e)
         {
-            filtroCidades = listaCidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
-            cbCidades.ItemsSource = filtroCidades;
+            if (listaCidades!=null)
+            {
+                var selecao1 = cbCidades.SelectedIndex;
+                var selectItem = cbCidades.SelectedItem;
+                filtroCidades = listaCidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
+                cbCidades.ItemsSource = filtroCidades.OrderBy(x => x.Nome).ToList();   
+            }
+            else
+            {
+                filtroCidades = Cidades.Where(a => a.Nome.Contains(e.NewTextValue)).ToList();
+                cbCidades.ItemsSource = filtroCidades.OrderBy(x => x.Nome).ToList();
+            }
+            
         }
     }
 }

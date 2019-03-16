@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1_Vagas.Paginas.VagasCadastradasPage">
+             x:Class="App1_Vagas.Paginas.VagasCadastradasPage"
+              BackgroundColor="LightGray"
+             Title="Agência de Empregos - Vagas Cadastradas">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20,0,20,0">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Vagas" FontSize="24" />
-                <Label Text="encontre seu emprego aqui" FontSize="12" />
+                <Label Text="Encontre seu emprego aqui" FontSize="12"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="EndAndExpand"/>
             </StackLayout>
             <Entry Placeholder="Pesquisar"  TextChanged="PesquisarAction"/>
             <Label Text="" x:Name="lblCount" />
@@ -16,20 +20,20 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <StackLayout Grid.Column="0">
+                                <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Cargo}" FontAttributes="Bold" />
                                     <Label Text="{Binding Empresa}" />
                                     <Label Text="{Binding Cidade}" />
                                 </StackLayout>
 
-                                <StackLayout Grid.Column="1" Orientation="Horizontal">
-                                    <Label Text="Editar" FontSize="16">
+                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                    <Label Text="Editar" FontSize="16" >
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}" />
                                         </Label.GestureRecognizers>
