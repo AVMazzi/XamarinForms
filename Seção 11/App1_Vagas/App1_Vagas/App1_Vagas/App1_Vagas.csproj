@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Agência de Empregos</PackageId>
+    <Company>AM Solutions</Company>
+    <Authors>A. Mazzi</Authors>
+    <Product>App de Cadastro de Vagas de Empregos</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
