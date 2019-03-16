@@ -5,7 +5,7 @@
              xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
              x:Class="App1_Vagas.Paginas.EditarPage"
               BackgroundColor="LightGray"
-             Title="Agência de Empregos - Atualizar Vagas">
+             Title=" Atualizar Vagas">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>

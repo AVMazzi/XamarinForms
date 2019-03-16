@@ -4,7 +4,7 @@
              xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
              x:Class="App1_Vagas.Paginas.CadastroPage"
               BackgroundColor="LightGray"
-             Title="Agência de Empregos - Cadastro de Vagas">
+             Title="Cadastro de Vagas">
 <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="txtVaga" Placeholder="Vaga" />
