@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Mesa_RPG"
+             x:Class="Mesa_RPG.MainPage">
+    <StackLayout>
+        <StackLayout Orientation="Vertical" Padding="5, 0, 5, 0">
+            <Entry Placeholder="Código"
+             x:Name="txtCd" HorizontalOptions="Start" VerticalOptions="StartAndExpand"/>
+            <Entry Placeholder="Nome de Usuário"
+             x:Name="txtNome" HorizontalOptions="Start" VerticalOptions="StartAndExpand"/>
+            <Entry Placeholder="Email"
+             x:Name="txtEmail" HorizontalOptions="Start" VerticalOptions="StartAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="5, 0, 5, 0">
+            <Button Text="Search" Clicked="BtnSearch_Clicked" x:Name="btnSearch"
+                    HeightRequest="50"/>
+            <Button Text="Save" Clicked="BtnSave_Clicked" x:Name="btnSave"
+                    HeightRequest="50" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding ="5, 5, 5, 0">
+            <ListView x:Name="listUsuario" ItemSelected="ListUsuario_ItemSelected" 
+                      SeparatorColor="Blue" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="BtnUpdate_Clicked" Text="Update"
+                                          CommandParameter="{Binding .}"></MenuItem>
+                                <MenuItem Clicked="BtnDelete_Clicked" Text="Delete"
+                                          CommandParameter="{Binding .}" IsDestructive="True"></MenuItem>
+                            </ViewCell.ContextActions>
+                            <StackLayout Padding="5,5" Orientation="Vertical" >
+                                
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding CD_USER}" HorizontalOptions="StartAndExpand"></Label>
+                                    <Label Text="{Binding NM_USER}" HorizontalOptions="CenterAndExpand"></Label>
+                                    <Label Text="{Binding DS_EMAIL}" HorizontalOptions="EndAndExpand"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label HorizontalOptions="StartAndExpand" ></Label>
+            <Label HorizontalOptions="CenterAndExpand" ></Label>
+            <Label HorizontalOptions="EndAndExpand" ></Label>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
