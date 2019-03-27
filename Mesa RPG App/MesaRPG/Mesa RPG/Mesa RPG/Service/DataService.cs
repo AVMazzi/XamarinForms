@@ -87,13 +87,32 @@ namespace Mesa_RPG.Service
             }
         }
 
+        public async Task<int>GetLogin(string usuario, string senha)
+        {
+            try
+            {
+                string url = "http://mesarpg.somee.com/api/Usuarios?usuario={usuario}&senha={senha}";
+
+                var uri = new Uri(String.Format(url, usuario, senha));
+                var response = await client.GetStringAsync(uri);
+                var usuarios = JsonConvert.DeserializeObject<int>(response);
+
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task AddUserAsync(Usuario usuario)
         {
             try
             {
                 string url = "http://mesarpg.somee.com/api/usuarios/{0}";
 
-                var uri = new Uri(String.Format(url, usuario.CD_USER));
+                var uri = new Uri(String.Format(url, usuario.CD_USUARIO));
 
                 var data = JsonConvert.SerializeObject(usuario);
                 var content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -117,7 +136,7 @@ namespace Mesa_RPG.Service
             {
                 string url = "http://mesarpg.somee.com/api/Usuarios/{0}";
 
-                var uri = new Uri(String.Format(url, usuario.CD_USER));
+                var uri = new Uri(String.Format(url, usuario.CD_USUARIO));
 
                 var data = JsonConvert.SerializeObject(usuario);
                 var content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -140,7 +159,7 @@ namespace Mesa_RPG.Service
             try
             {
                 string url = "http://mesarpg.somee.com/api/Usuarios?Cd={0}";
-                var uri = new Uri(String.Format(url, usuario.CD_USER));
+                var uri = new Uri(String.Format(url, usuario.CD_USUARIO));
                 HttpResponseMessage response = null;
                 response = await client.DeleteAsync(uri);
                 //if (!response.IsSuccessStatusCode)

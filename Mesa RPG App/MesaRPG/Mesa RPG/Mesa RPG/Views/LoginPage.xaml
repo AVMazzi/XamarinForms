@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             x:Class="Mesa_RPG.Views.LoginPage"
+             BackgroundImage="fundoLogin.png"
+             BackgroundColor="Black">
+
+
+    <Grid
+        HeightRequest="350"
+        HorizontalOptions="CenterAndExpand"
+        Padding="30,140,40,0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="115"/>
+            <RowDefinition Height="95"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Usuario-->
+        <Label            
+                 Text="Usuário/E-mail:" 
+                  HorizontalOptions="StartAndExpand"
+                  VerticalOptions="EndAndExpand"
+                  FontSize="30"
+                  TextColor="Brown"
+                  Grid.Row="0">
+            <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="UnifrakturCook-Bold.ttf#UnifrakturCook" />
+                </OnPlatform>
+            </Label.FontFamily>
+        </Label>
+        <Image    
+                  Source="newTxtBox.png"
+                  x:Name="imgTxtBox"
+                  Aspect="Fill"
+                  Grid.Row="1"
+            WidthRequest="100"/>
+
+        <Entry Placeholder="Usuário/Email"
+                  BackgroundColor="Transparent"
+                  Grid.Row="1"
+                  HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="CenterAndExpand"
+                  x:Name="txtUser"
+                  FontSize="35"
+                  HorizontalTextAlignment="Center">
+            <Entry.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="norty.ttf#Norty" />
+                </OnPlatform>
+            </Entry.FontFamily>
+        </Entry>
+
+        <!--Senha-->
+        <Label 
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="EndAndExpand"
+                   FontSize="30"
+                   TextColor="Brown"  FontAttributes="Bold"
+                   Grid.Row="2"
+                   Text="Senha:">
+            <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="UnifrakturCook-Bold.ttf#UnifrakturCook" />
+                </OnPlatform>
+            </Label.FontFamily>
+        </Label>
+        <Image Source="newTxtBox.png"
+                   Grid.Row="3"
+                   Aspect="Fill"/>
+        <Entry Placeholder="Senha"
+                  BackgroundColor="Transparent"
+                  Grid.Row="3"
+                  HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="CenterAndExpand"
+                  x:Name="txtPassword"
+                  FontSize="35"
+                  FontAttributes="Bold"
+                  HorizontalTextAlignment="Center"
+                  IsPassword="True">
+            <Entry.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="norty.ttf#Norty" />
+                </OnPlatform>
+            </Entry.FontFamily>
+            <Entry.Behaviors>
+                <behaviorPack:PasswordValidationBehavior />
+            </Entry.Behaviors>
+        </Entry>
+
+        <!--Login e Cadastrar-->
+        <ImageButton Source="btnLogin3.png" 
+                   Grid.Row="5"
+                   Clicked="BtnLogin_Clicked" 
+                   Aspect="AspectFit"
+                   x:Name="btnLogin"
+                   BackgroundColor="Transparent"
+                   WidthRequest="80"
+                         />
+        <ImageButton Source="btncadastro.png"
+                   Grid.Row="6"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Clicked="BtnCadastrar_Clicked" 
+                   Aspect="AspectFit"
+                   x:Name="btnCadastrar"
+                   BackgroundColor="Transparent"/>
+    </Grid>
+</ContentPage>

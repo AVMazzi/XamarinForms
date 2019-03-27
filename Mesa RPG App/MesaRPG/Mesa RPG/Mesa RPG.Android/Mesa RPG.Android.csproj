@@ -68,6 +68,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\BastardaPlain.ttf" />
+    <AndroidAsset Include="Assets\BlackFlag.ttf" />
+    <AndroidAsset Include="Assets\DampfPlatz.ttf" />
+    <AndroidAsset Include="Assets\DampfPlatzs.ttf" />
+    <AndroidAsset Include="Assets\DampfPlatzsh.ttf" />
+    <AndroidAsset Include="Assets\DeutscheZierschrift.ttf" />
+    <AndroidAsset Include="Assets\Flame Fetish - TTF.ttf" />
+    <AndroidAsset Include="Assets\Headlinetext.ttf" />
+    <AndroidAsset Include="Assets\Hotel Costes Personal Use.ttf" />
+    <AndroidAsset Include="Assets\Lobster-Regular.ttf" />
+    <AndroidAsset Include="Assets\MinnesotaWinter-Regular.ttf" />
+    <AndroidAsset Include="Assets\norty.otf" />
+    <AndroidAsset Include="Assets\norty.ttf" />
+    <AndroidAsset Include="Assets\Old Wise Sketch.otf" />
+    <AndroidAsset Include="Assets\Ruritania.ttf" />
+    <AndroidAsset Include="Assets\Ruritania-Outline.ttf" />
+    <AndroidAsset Include="Assets\UnifrakturCook-Bold.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -95,13 +112,30 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mesa RPG\Mesa RPG.csproj">
       <Project>{4cfdacca-4198-4686-a638-b113f6ad28da}</Project>
       <Name>Mesa RPG</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\newTxtBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btncadastro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btnLogin3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\fundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\fundoLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\MESA2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

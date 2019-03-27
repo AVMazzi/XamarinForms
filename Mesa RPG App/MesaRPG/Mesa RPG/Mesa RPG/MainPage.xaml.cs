@@ -29,7 +29,7 @@ namespace Mesa_RPG
         {
             if (txtNome.Text == null && txtEmail.Text == null && txtCd.Text == null)
             {
-                listUsuario.ItemsSource = _usuarios.OrderBy(item => item.CD_USER).ToList();
+                listUsuario.ItemsSource = _usuarios.OrderBy(item => item.CD_USUARIO).ToList();
                 LimpaUsuario();
             }
             else if (txtNome.Text != null && txtEmail.Text == null && txtCd.Text == null)
@@ -38,7 +38,7 @@ namespace Mesa_RPG
                 Usuario user = await new DataService().GetUsuarioByNameAsync(txtNome.Text);
                 List<Usuario> usuarios = new List<Usuario>();
                 usuarios.Add(user);
-                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USER).ToList();
+                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USUARIO).ToList();
                 LimpaUsuario();
             }
             else if (txtNome.Text == null && txtEmail.Text != null && txtCd.Text == null)
@@ -46,14 +46,14 @@ namespace Mesa_RPG
                 Usuario user = await new DataService().GetUsuarioByEmailAsync(txtEmail.Text);
                 List<Usuario> usuarios = new List<Usuario>();
                 usuarios.Add(user);
-                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USER).ToList();
+                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USUARIO).ToList();
             }
             else if (txtNome.Text == null && txtEmail.Text == null && txtCd.Text != null)
             {
                 Usuario user = await new DataService().GetUsuarioByCdAsync(int.Parse(txtCd.Text));
                 List<Usuario> usuarios = new List<Usuario>();
                 usuarios.Add(user);
-                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USER).ToList();
+                listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USUARIO).ToList();
             }
             else
             {
@@ -67,7 +67,7 @@ namespace Mesa_RPG
             {
                 Usuario user = new Usuario
                 {
-                    NM_USER = txtNome.Text,
+                    NM_USUARIO = txtNome.Text,
                     DS_EMAIL = txtEmail.Text
                 };
                 try
@@ -90,10 +90,10 @@ namespace Mesa_RPG
         private void ListUsuario_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var usuario = e.SelectedItem as Usuario;
-            txtCd.Text = usuario.CD_USER.ToString();
+            txtCd.Text = usuario.CD_USUARIO.ToString();
             txtCd.IsReadOnly = true;
             txtEmail.Text = usuario.DS_EMAIL;
-            txtNome.Text = usuario.NM_USER;
+            txtNome.Text = usuario.NM_USUARIO;
         }
 
         private async void BtnUpdate_Clicked(object sender, EventArgs e)
@@ -104,7 +104,7 @@ namespace Mesa_RPG
                 {
                     var mi = ((MenuItem)sender);
                     Usuario usuario = (Usuario)mi.CommandParameter;
-                    usuario.NM_USER = txtNome.Text;
+                    usuario.NM_USUARIO = txtNome.Text;
                     usuario.DS_EMAIL = txtEmail.Text;
                     await dataService.UpdateUserAsync(usuario);
 
