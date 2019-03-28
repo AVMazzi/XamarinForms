@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+            xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="Mesa_RPG.Views.CadastroUserPage"
+                BackgroundClicked="Onclose">
+    <RelativeLayout
+                HeightRequest="550"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+        <Image Source="MESA2" 
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+               Aspect="AspectFill"/>
+        <Grid  VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <!--RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>-->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="125" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!--Usuario-->
+            <Label Text="Usuário:" 
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="22" FontFamily="Century Gothic"
+                   TextColor="AntiqueWhite"  FontAttributes="Bold"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+            <Image Source="txtBox.png"
+               Grid.Row="0"
+               Grid.Column="1"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            <Entry Placeholder="Informe o Usuário"
+               BackgroundColor="Transparent"
+               Grid.Row="0"
+               Grid.Column="1"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+                   x:Name="txtUser"/>
+
+            <!--Email-->
+            <Label Text="E-Mail:" 
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="22" FontFamily="Century Gothic"
+                   TextColor="AntiqueWhite"  FontAttributes="Bold"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+            <Image Source="txtBox.png"
+               Grid.Row="1"
+               Grid.Column="1"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            <Entry Placeholder="Informe um E-mail"
+               BackgroundColor="Transparent"
+               Grid.Row="1"
+               Grid.Column="1"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               x:Name="txtEmail"/>
+
+            <!--Senha-->
+            <Label Text="Senha:" 
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="22" FontFamily="Century Gothic"
+                   TextColor="AntiqueWhite"  FontAttributes="Bold"
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+            <Image Source="txtBox.png"
+               Grid.Row="2"
+               Grid.Column="1"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            <Entry Placeholder="Informe uma senha"
+               BackgroundColor="Transparent"
+               Grid.Row="2"
+               Grid.Column="1"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               x:Name="txtSenha"/>
+
+            <!--Salvar-->
+
+            <ImageButton Source="btnSalvar3.png"
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Clicked="ImageButton_Clicked"
+               />
+        </Grid>
+    </RelativeLayout>
+</pages:PopupPage>

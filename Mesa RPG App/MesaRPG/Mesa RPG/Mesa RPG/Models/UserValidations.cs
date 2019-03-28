@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Text;
 using Mesa_RPG.Models;
 using FluentValidation;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using Mesa_RPG.Service;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace Mesa_RPG.Models
 {
@@ -15,18 +18,20 @@ namespace Mesa_RPG.Models
         {
             RuleFor(a => a.NM_USUARIO).NotNull()
                 .NotEmpty()
-                .Length(8, 30).WithMessage("Informe: USUÁRIO!");
+                .Must(NameValidator).WithMessage("Usuário já cadastrado!")
+                .Length(3, 30).WithMessage("Informe: USUÁRIO COM 3 A 30 CARACTERES!");
             RuleFor(a => a.DS_EMAIL).NotNull()
                 .NotEmpty()
+                 .Must(NameValidator).WithMessage("E-mail já cadastrado!")
                 .EmailAddress()
                 .WithMessage("E-mail Inválido.");
             RuleFor(a => a.DS_SENHA.ToString()).NotNull()
                 .NotEmpty()
-                .Length(1, 10).WithMessage("IInforme: SENHA!");                
+                .Length(6, 10).WithMessage("Informe: SENHA COM 6 A 10 CARACTERES!");                
         }
 
 
-        public static bool TesteValidator(string teste)
+        public static bool numberValidator(string teste)
         {
             bool valido = true;
             long novoTeste = 0;
@@ -36,5 +41,28 @@ namespace Mesa_RPG.Models
             }
             return valido;
         }
+
+        private static bool NameValidator(string name)
+        {
+            bool valido = true; ;
+            Task<Usuario> _user  = new DataService().GetUsuarioByNameAsync(name);
+            if (_user != null)
+            {
+                valido = false;
+            }
+            return valido;
+        }
+
+        private static bool EmailValidator(string email)
+        {
+            bool valido = true; ;
+            Task<Usuario> _user = new DataService().GetUsuarioByEmailAsync(email);
+            if (_user != null)
+            {
+                valido = false;
+            }
+            return valido;
+        }
+
     }
 }

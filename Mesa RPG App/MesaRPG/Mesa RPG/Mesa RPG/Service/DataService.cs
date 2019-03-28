@@ -91,7 +91,7 @@ namespace Mesa_RPG.Service
         {
             try
             {
-                string url = "http://mesarpg.somee.com/api/Usuarios?usuario={usuario}&senha={senha}";
+                string url = "http://mesarpg.somee.com/api/Usuarios?usuario={0}&senha={1}";
 
                 var uri = new Uri(String.Format(url, usuario, senha));
                 var response = await client.GetStringAsync(uri);
