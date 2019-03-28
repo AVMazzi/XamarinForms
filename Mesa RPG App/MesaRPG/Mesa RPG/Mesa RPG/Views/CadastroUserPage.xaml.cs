@@ -33,7 +33,7 @@ namespace Mesa_RPG.Views
             PopupNavigation.Instance.PopAsync();
         }
 
-        private async Task ImageButton_ClickedAsync(object sender, EventArgs e)
+        private async void ImageButton_ClickedAsync(object sender, EventArgs e)
         {
             Usuario _user = new Usuario();
             _user.DS_EMAIL = txtEmail.Text;
