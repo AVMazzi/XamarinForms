@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup;
 using Rg.Plugins.Popup.Services;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Contracts;
 
 namespace Mesa_RPG.Views
 {
@@ -27,7 +30,8 @@ namespace Mesa_RPG.Views
 
         private async void BtnCadastrar_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.PushAsync(new CadastroUserPage(), true);
+            //await PopupNavigation.PushAsync(new CadastroUserPage(), true);
+            await Navigation.PushPopupAsync(new CadastroUserPage());
         }
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)

@@ -46,7 +46,7 @@ namespace Mesa_RPG.Views
                 _user.DS_SENHA = CryptoSenha.Encrypt(txtSenha.Text);
                 await new DataService().AddUserAsync(_user);
                 await DisplayAlert("Sucesso", "Cadastro Realizado com Sucesso!", "OK");
-                App.Current.MainPage = new NavigationPage(new CadastroUserPage());
+                PopupNavigation.Instance.PopAsync();
             }
             else
             {

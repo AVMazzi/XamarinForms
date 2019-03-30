@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
+            xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                 xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -85,13 +86,18 @@
                Grid.Column="1"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Informe uma senha"
-               BackgroundColor="Transparent"
-               Grid.Row="2"
-               Grid.Column="1"
-               HorizontalOptions="CenterAndExpand"
-               VerticalOptions="CenterAndExpand"
-               x:Name="txtSenha"/>
+          <Entry Placeholder="Informe uma senha"
+             BackgroundColor="Transparent"
+             Grid.Row="2"
+             Grid.Column="1"
+             HorizontalOptions="CenterAndExpand"
+             VerticalOptions="CenterAndExpand"
+             x:Name="txtSenha"
+             IsPassword="True">
+            <Entry.Behaviors>
+              <behaviorPack:PasswordValidationBehavior />
+            </Entry.Behaviors>
+          </Entry>
 
             <!--Salvar-->
 

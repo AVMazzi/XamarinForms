@@ -35,7 +35,7 @@ namespace Mesa_RPG
             else if (txtNome.Text != null && txtEmail.Text == null && txtCd.Text == null)
             {
 
-                Usuario user = await new DataService().GetUsuarioByNameAsync(txtNome.Text);
+                Usuario user = new DataService().GetUsuarioByNameAsync(txtNome.Text);
                 List<Usuario> usuarios = new List<Usuario>();
                 usuarios.Add(user);
                 listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USUARIO).ToList();
@@ -43,7 +43,7 @@ namespace Mesa_RPG
             }
             else if (txtNome.Text == null && txtEmail.Text != null && txtCd.Text == null)
             {
-                Usuario user = await new DataService().GetUsuarioByEmailAsync(txtEmail.Text);
+                Usuario user = new DataService().GetUsuarioByEmailAsync(txtEmail.Text);
                 List<Usuario> usuarios = new List<Usuario>();
                 usuarios.Add(user);
                 listUsuario.ItemsSource = usuarios.OrderBy(item => item.CD_USUARIO).ToList();

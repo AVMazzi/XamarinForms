@@ -22,7 +22,7 @@ namespace Mesa_RPG.Models
                 .Length(3, 30).WithMessage("Informe: USUÁRIO COM 3 A 30 CARACTERES!");
             RuleFor(a => a.DS_EMAIL).NotNull()
                 .NotEmpty()
-                 .Must(NameValidator).WithMessage("E-mail já cadastrado!")
+                 .Must(EmailValidator).WithMessage("E-mail já cadastrado!")
                 .EmailAddress()
                 .WithMessage("E-mail Inválido.");
             RuleFor(a => a.DS_SENHA.ToString()).NotNull()
@@ -44,9 +44,9 @@ namespace Mesa_RPG.Models
 
         private static bool NameValidator(string name)
         {
-            bool valido = true; ;
-            Task<Usuario> _user  = new DataService().GetUsuarioByNameAsync(name);
-            if (_user != null)
+            bool valido = true;
+            Usuario _user  = new DataService().GetUsuarioByNameAsync(name);
+            if (_user.CD_USUARIO != -1)
             {
                 valido = false;
             }
@@ -56,8 +56,8 @@ namespace Mesa_RPG.Models
         private static bool EmailValidator(string email)
         {
             bool valido = true; ;
-            Task<Usuario> _user = new DataService().GetUsuarioByEmailAsync(email);
-            if (_user != null)
+            Usuario _user = new DataService().GetUsuarioByEmailAsync(email);
+            if (_user.CD_USUARIO != -1)
             {
                 valido = false;
             }
